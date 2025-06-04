@@ -59,7 +59,7 @@
               <div class="isi p-3">
                 <center>
                 <p>
-                    Media Pembelajaran ini dibuat untuk memenuhi persyaratan dalam menyelesaikan 
+                    "Media Pembelajaran ini dibuat untuk memenuhi persyaratan dalam menyelesaikan 
                     Program Strata-1 Pendidikan Komputer dengan judul tugas akhir : <br>
                     <b>Pengembangan Media Pembelajaran Interaktif Berbasis Game Edukasi Materi 
                         Sistem Komputer Untuk Siswa Kelas VIII SMP"</b>
