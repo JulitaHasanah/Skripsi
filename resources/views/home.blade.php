@@ -62,12 +62,12 @@
                             <div class="icon"><i class="fa-solid fa-table-list" style="font-size: 50px; margin-top: 20%;"></i></div>
                         </a>
                         <div class="content">
-                            <a href="{{ route('cp') }}" style='text-decoration:none;'><p>CP</p></a>
+                            <a href="{{ route('cp') }}" style='text-decoration:none;'><p style="font-size: 15px">Capaian Pembelajaran</p></a>
                         </div>
                     </div>
                     <div class="box shadow" style="background-color:#FFFD8C;">
                         {{-- <a href="https://e-siskom.netlify.app/"> --}}
-                        <a href="{{ url('SistemKomputer/media.html') }}">
+                        <a href="https://e-siskom.netlify.app/">
                             <div class="icon"><i class="fa-solid fa-book" style="font-size: 50px; margin-top: 20%;"></i></div>
                         </a>
                         <div class="content">
