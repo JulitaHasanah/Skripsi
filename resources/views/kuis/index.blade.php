@@ -4,44 +4,88 @@
 
 <div class="d-flex justify-content-center align-items-center mb-3 flex-wrap gap-4">
 
-    <form method="GET" action="{{ route('kuis.index') }}" class="form-inline mr-4">
-        <label for="kuis" class="mr-2">Hasil:</label>
-        <select name="kuis" id="kuis" class="form-control mr-2">
-            <option value="kuis1" {{ request('kuis') == 'kuis1' ? 'selected' : '' }}>Kuis 1</option>
-            <option value="kuis2" {{ request('kuis') == 'kuis2' ? 'selected' : '' }}>Kuis 2</option>
-            <option value="kuis3" {{ request('kuis') == 'kuis3' ? 'selected' : '' }}>Kuis 3</option>
-        </select>
+<!-- Filter Kuis dan Kelas -->
+<form method="GET" action="{{ route('kuis.index') }}" class="form-inline mr-4" id="filterKuisKelasForm">
+    <!-- Dropdown Kuis -->
+    <label for="kuis" class="mr-2">Hasil:</label>
+    <select name="kuis" id="kuis" class="form-control mr-2" onchange="document.getElementById('filterKuisKelasForm').submit()">
+        <option value="kuis1" {{ request('kuis') == 'kuis1' ? 'selected' : '' }}>Kuis 1</option>
+        <option value="kuis2" {{ request('kuis') == 'kuis2' ? 'selected' : '' }}>Kuis 2</option>
+        <option value="kuis3" {{ request('kuis') == 'kuis3' ? 'selected' : '' }}>Kuis 3</option>
+    </select>
 
-        <button type="submit" class="btn btn-primary">Tampilkan</button>
-    </form>
+    <!-- Dropdown Kelas -->
+    <label for="kelas" class="mr-2">Kelas:</label>
+    <select name="kelas" id="kelas" class="form-control mr-2" onchange="document.getElementById('filterKuisKelasForm').submit()">
+        <option value="">Semua Kelas</option>
+        <option value="VIIIA" {{ request('kelas') == 'VIIIA' ? 'selected' : '' }}>VIIIA</option>
+        <option value="VIIIB" {{ request('kelas') == 'VIIIB' ? 'selected' : '' }}>VIIIB</option>
+        <option value="VIIIC" {{ request('kelas') == 'VIIIC' ? 'selected' : '' }}>VIIIC</option>
+        <option value="VIIID" {{ request('kelas') == 'VIIID' ? 'selected' : '' }}>VIIID</option>
+    </select>
+</form>
 
-    <!-- Topbar Search -->
-    <form action="{{ route('kuis.index') }}" method="GET"
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        
-        <div class="input-group">
-            <input type="text" name="search" value="{{ request('search') }}"
-                class="form-control border-1 small" placeholder="Cari Data Nilai Siswa..."
-                aria-label="Search" aria-describedby="basic-addon2">
+ <!-- Search -->
+{{-- <form action="{{ route('kuis.index') }}" method="GET"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 
-            {{-- Jaga parameter kuis tetap ada --}}
-            <input type="hidden" name="kuis" value="{{ request('kuis', 'kuis1') }}">
+    <div class="input-group">
+        <input type="text" name="search" value="{{ request('search') }}"
+            class="form-control border-1 small" placeholder="Cari Data Nilai Siswa..."
+            aria-label="Search" aria-describedby="basic-addon2">
 
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-
-    <form action="{{ route('kuis.download') }}" method="GET" class="form-inline">
         <input type="hidden" name="kuis" value="{{ request('kuis', 'kuis1') }}">
-        <button type="submit" class="btn btn-success">
-            <i class="fas fa-download"></i> Download
-        </button>
-    </form>
+        <input type="hidden" name="kelas" value="{{ request('kelas', '') }}">
+
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form> --}}
+
+<form action="{{ route('kuis.index') }}" method="GET"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+    id="searchForm">
+
+    <div class="input-group">
+        <input type="text" name="search" value="{{ request('search') }}"
+            class="form-control border-1 small" placeholder="Cari Data Nilai Siswa..."
+            aria-label="Search" aria-describedby="basic-addon2" id="searchInput">
+
+        {{-- Jaga parameter kuis dan kelas tetap ada --}}
+        <input type="hidden" name="kuis" value="{{ request('kuis', 'kuis1') }}">
+        <input type="hidden" name="kelas" value="{{ request('kelas', '') }}">
+
+        <div class="input-group-append">
+            <span class="input-group-text bg-primary text-white">
+                <i class="fas fa-search fa-sm"></i>
+            </span>
+        </div>
+    </div>
+</form>
+
+<script>
+    let timer;
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+
+    searchInput.addEventListener('input', function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            searchForm.submit();
+        }, 400); // submit setelah 0.5 detik tidak mengetik
+    });
+</script>
+
+
+
+    <a href="{{ route('kuis.downloadPDF', ['kuis' => request('kuis', 'kuis1'), 'kelas' => request('kelas')]) }}"
+   class="btn btn-success" target="_blank">
+   <i class="fas fa-download me-2"></i> Download PDF
+   </a>
+
 
 </div>
 

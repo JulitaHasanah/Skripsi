@@ -10,17 +10,12 @@ use Illuminate\Http\Request;
 
 class EvaluasiController extends Controller
 {
-//     public function index()
-// {
-//     $data = Evaluasi::with('siswa')->get(); // relasi siswa di-join otomatis
-//     return view('evaluasi.index', compact('data'));
-// }
+
 
 public function index(Request $request)
 {
-    $data = Evaluasi::with('siswa')->get();
-
     $search = $request->get('search');
+    $kelas = $request->get('kelas');
 
     $query = Evaluasi::with('siswa');
 
@@ -35,23 +30,36 @@ public function index(Request $request)
         });
     }
 
-    // $data = $query->get();
+    if ($kelas) {
+        $query->whereHas('siswa', function ($q) use ($kelas) {
+            $q->where('kelas', $kelas);
+        });
+    }
+
     $data = $query->paginate(5);
     $data->appends(request()->query());
 
-    return view('evaluasi.index', compact('data'));
+    return view('evaluasi.index', compact('data', 'kelas'));
 }
 
 public function downloadPDF(Request $request)
 {
-    $evaluasi = $request->get('evaluasi', 'evaluasi');
-    $data = Evaluasi::with('siswa')->get();
+    $kelas = $request->get('kelas');
 
-    
+    $query = Evaluasi::with('siswa');
 
-    $pdf = Pdf::loadView('evaluasi.pdf', compact('data', 'evaluasi'));
+    if ($kelas) {
+        $query->whereHas('siswa', function ($q) use ($kelas) {
+            $q->where('kelas', $kelas);
+        });
+    }
 
-    return $pdf->download("nilai-evaluasi.pdf");
+    $data = $query->get();
+    $evaluasi = 'evaluasi';
+
+    $pdf = Pdf::loadView('evaluasi.pdf', compact('data', 'evaluasi', 'kelas'));
+
+    return $pdf->download("nilai-evaluasi-{$kelas}.pdf");
 }
 
 }

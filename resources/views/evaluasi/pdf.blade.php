@@ -11,7 +11,17 @@
     </style>
 </head>
 <body>
-    <h2>Laporan Nilai Evaluasi</h2>
+    {{-- <h2>Laporan Nilai Evaluasi</h2> --}}
+    <h2 style="text-align: center;">
+    Laporan Nilai Evaluasi 
+    @if(!empty($kelas))
+        Kelas {{ $kelas }}
+    @else
+        Semua Kelas
+    @endif
+    </h2>
+    <p style="text-align: center;">Dicetak pada: {{ date('d-m-Y H:i') }}</p>
+
     <table>
         <thead>
             <tr>

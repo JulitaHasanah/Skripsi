@@ -49,7 +49,9 @@ Route::get('/evaluasi', [EvaluasiController::class, 'index'])->name('evaluasi.in
 
 Route::delete('/evaluasi/{id}', [EvaluasiController::class, 'destroy'])->name('evaluasi.destroy');
 
-Route::get('/download-nilai-kuis', [KuisController::class, 'downloadPDF'])->name('kuis.download');
+// Route::get('/download-nilai-kuis', [KuisController::class, 'downloadPDF'])->name('kuis.download');
+Route::get('/kuis/download-pdf', [KuisController::class, 'downloadPDF'])->name('kuis.downloadPDF');
+
 Route::get('/download-nilai-evaluasi', [EvaluasiController::class, 'downloadPDF'])->name('evaluasi.download');
 
 

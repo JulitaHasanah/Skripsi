@@ -14,7 +14,8 @@ class KuisController extends Controller
     
 public function index(Request $request)
 {
-    $kuis = $request->get('kuis', 'kuis1');
+   $kuis = $request->get('kuis', 'kuis1');
+    $kelas = $request->get('kelas');
     $search = $request->get('search');
 
     switch ($kuis) {
@@ -31,18 +32,21 @@ public function index(Request $request)
 
     if ($search) {
         $query->where(function ($q) use ($search) {
-            // Cari pada relasi siswa: nama dan kelas
             $q->whereHas('siswa', function ($subQuery) use ($search) {
                 $subQuery->where('nama', 'like', '%' . $search . '%')
                          ->orWhere('kelas', 'like', '%' . $search . '%');
             })
-            // Tambahan cari di kolom nilai dan waktu
             ->orWhere('nilai', 'like', '%' . $search . '%')
             ->orWhere('waktu', 'like', '%' . $search . '%');
         });
     }
 
-    // $data = $query->get();
+    if ($kelas) {
+        $query->whereHas('siswa', function ($q) use ($kelas) {
+            $q->where('kelas', $kelas);
+        });
+    }
+
     $data = $query->paginate(5);
     $data->appends(request()->query());
 
@@ -52,22 +56,34 @@ public function index(Request $request)
 public function downloadPDF(Request $request)
 {
     $kuis = $request->get('kuis', 'kuis1');
+    $kelas = $request->get('kelas'); // bisa null
 
     switch ($kuis) {
         case 'kuis2':
-            $data = Kuis2::with('siswa')->get();
+            $query = Kuis2::with('siswa');
             break;
         case 'kuis3':
-            $data = Kuis3::with('siswa')->get();
+            $query = Kuis3::with('siswa');
             break;
         default:
-            $data = Kuis1::with('siswa')->get();
+            $query = Kuis1::with('siswa');
             break;
     }
 
-    $pdf = pdf::loadView('kuis.pdf', compact('data', 'kuis'));
+    // Filter berdasarkan kelas jika ada
+    if ($kelas) {
+        $query->whereHas('siswa', function ($q) use ($kelas) {
+            $q->where('kelas', $kelas);
+        });
+    }
 
-    return $pdf->download("nilai-{$kuis}.pdf");
+    $data = $query->get();
+
+    $pdf = Pdf::loadView('kuis.pdf', compact('data', 'kuis'));
+
+    return $pdf->download("nilai-{$kuis}" . ($kelas ? "-{$kelas}" : '') . ".pdf");
 }
+
+
 
 }

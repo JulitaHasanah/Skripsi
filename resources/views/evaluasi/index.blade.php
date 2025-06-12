@@ -4,7 +4,19 @@
 
 <div class="d-flex justify-content-center align-items-center mb-3 flex-wrap gap-5">
 
-    <form action="{{ route('evaluasi.index') }}" method="GET"
+    <form action="{{ route('evaluasi.index') }}" method="GET" class="form-inline" id="kelasFilterForm">
+    <select name="kelas" class="form-control mr-2" onchange="document.getElementById('kelasFilterForm').submit()">
+        <option value="">Semua Kelas</option>
+        <option value="VIIIA" {{ request('kelas') == 'VIIIA' ? 'selected' : '' }}>VIIIA</option>
+        <option value="VIIIB" {{ request('kelas') == 'VIIIB' ? 'selected' : '' }}>VIIIB</option>
+        <option value="VIIIC" {{ request('kelas') == 'VIIIC' ? 'selected' : '' }}>VIIIC</option>
+        <option value="VIIID" {{ request('kelas') == 'VIIID' ? 'selected' : '' }}>VIIID</option>
+    </select>
+    </form>
+
+
+    
+    {{-- <form action="{{ route('evaluasi.index') }}" method="GET"
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         
         <div class="input-group">
@@ -18,15 +30,47 @@
                 </button>
             </div>
         </div>
+    </form> --}}
+
+    <form action="{{ route('evaluasi.index') }}" method="GET"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="searchForm">
+    
+    <div class="input-group">
+        <input type="text" name="search" value="{{ request('search') }}"
+            class="form-control border-1 small" placeholder="Cari Data Nilai Siswa..."
+            aria-label="Search" aria-describedby="search-icon" id="searchInput">
+
+        <div class="input-group-append">
+            <span class="input-group-text bg-primary text-white" id="search-icon">
+                <i class="fas fa-search fa-sm"></i>
+            </span>
+        </div>
+    </div>
     </form>
 
+    <script>
+        let timer;
+        const searchInput = document.getElementById('searchInput');
+        const searchForm = document.getElementById('searchForm');
 
-     <form action="{{ route('evaluasi.download') }}" method="GET" class="form-inline">
-        <input type="hidden" name="evaluasi" value="{{ request('evaluasi', 'evaluasi') }}">
+        searchInput.addEventListener('input', function () {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                searchForm.submit();
+            }, 500);
+        });
+    </script>
+
+
+
+
+    <form action="{{ route('evaluasi.download') }}" method="GET" class="form-inline">
+        <input type="hidden" name="kelas" value="{{ request('kelas') }}">
         <button type="submit" class="btn btn-success">
             <i class="fas fa-download"></i> Download
         </button>
     </form>
+
     
 
 </div>
@@ -60,8 +104,7 @@
                         <td>{{ $item->nilai }}</td>
                         <td>{{ $item->waktu }}</td>
                         <td>
-                            {{-- <a href="{{ route('evaluasi.edit', $item->id_evaluasi) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('evaluasi.destroy', $item->id_evaluasi) }}" method="POST" style="display:inline;"> --}}
+                            
                             <form>    
                                 @csrf
                                 @method('DELETE')
