@@ -1,6 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 // Koneksi ke database
 $con = mysqli_connect("localhost", "researc4_e-siskom", "g~xSopV0N(K{", "researc4_e-siskom");

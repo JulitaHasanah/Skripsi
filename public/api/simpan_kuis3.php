@@ -1,5 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 $con = new mysqli("localhost", "researc4_e-siskom", "g~xSopV0N(K{", "researc4_e-siskom");
 if ($con->connect_error) {
