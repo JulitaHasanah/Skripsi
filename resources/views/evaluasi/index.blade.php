@@ -15,22 +15,6 @@
     </form>
 
 
-    
-    {{-- <form action="{{ route('evaluasi.index') }}" method="GET"
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        
-        <div class="input-group">
-            <input type="text" name="search" value="{{ request('search') }}"
-                class="form-control border-1 small" placeholder="Cari Data Nilai Siswa..."
-                aria-label="Search" aria-describedby="basic-addon2">
-
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form> --}}
 
     <form action="{{ route('evaluasi.index') }}" method="GET"
     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="searchForm">
@@ -105,11 +89,22 @@
                         <td>{{ $item->waktu }}</td>
                         <td>
                             
-                            <form>    
+                            {{-- <form>    
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</button>
+                            </form> --}}
+
+
+                            <form action="{{ route('evaluasi.destroy', $item->id_evaluasi) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger btn-sm btn-delete">
+                                    Hapus
+                                </button>
                             </form>
+
+
                         </td>
                     </tr>
                     @endforeach
@@ -138,6 +133,35 @@
     </div>
 </div>
 
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // SweetAlert konfirmasi hapus
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = this.closest('form');
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data ini akan dihapus secara permanen.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    });
+</script>
 
 
 @endsection

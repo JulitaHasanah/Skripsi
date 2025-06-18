@@ -119,13 +119,24 @@
                         <td>{{ $item->nilai }}</td>
                         <td>{{ $item->waktu }}</td>
                         <td>
-                            <form>    
+                            {{-- <form action="{{ route('kuis.destroy', ['kuis' => request('kuis', 'kuis1'), 'id' => $item->id_kuis1]) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">
+                                <button type="button" class="btn btn-danger btn-sm btn-delete">
+                                    Hapus
+                                </button>
+                            </form> --}}
+
+                            <form action="{{ route('kuis.destroy', ['kuis' => $kuis, 'id' => $item->getKey()]) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger btn-sm btn-delete">
                                     Hapus
                                 </button>
                             </form>
+
+
+
                         </td>
                     </tr>
                     @endforeach
@@ -152,6 +163,37 @@
         </div>
     </div>
 </div>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // SweetAlert konfirmasi hapus
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = this.closest('form');
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data ini akan dihapus secara permanen.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    });
+</script>
+
 
 
 

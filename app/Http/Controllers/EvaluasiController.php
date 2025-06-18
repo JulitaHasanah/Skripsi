@@ -42,6 +42,18 @@ public function index(Request $request)
     return view('evaluasi.index', compact('data', 'kelas'));
 }
 
+
+public function destroy($id)
+{
+    $evaluasi = Evaluasi::findOrFail($id);
+    $evaluasi->delete();
+
+    return redirect()->route('evaluasi.index')
+        ->with('success', 'Data evaluasi berhasil dihapus.');
+}
+
+
+
 public function downloadPDF(Request $request)
 {
     $kelas = $request->get('kelas');

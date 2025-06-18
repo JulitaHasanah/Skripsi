@@ -9,25 +9,38 @@
 
 @section("contents")
 
-<div class="d-flex justify-content-center align-items-center mb-3 flex-wrap gap-5">
+<div class="d-flex align-items-center mb-3 flex-wrap gap-5">
 
-    <form action="{{ route('datasiswa.index') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-    <div class="input-group">
-        <input type="text" name="search" value="{{ request('search') }}"
-            class="form-control border-1 small custom-placeholder" placeholder="Cari Nama, Kelas, atau Status..."
-            aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
+    <form id="filterForm" action="{{ route('datasiswa.index') }}" method="GET" class="form-inline">
+        <select name="kelas" class="form-control mr-2" onchange="document.getElementById('filterForm').submit()">
+            <option value="">Semua Kelas</option>
+            @foreach(['VIIIA', 'VIIIB', 'VIIIC', 'VIIID'] as $k)
+                <option value="{{ $k }}" {{ request('kelas') == $k ? 'selected' : '' }}>
+                    {{ $k }}
+                </option>
+            @endforeach
+        </select>
+
+        {{-- <input type="text" name="search" id="searchInput" value="{{ request('search') }}"
+            class="form-control custom-placeholder mr-2" placeholder="Cari Nama, Kelas, atau Status..."> --}}
+
+        <div class="input-group mr-2">
+            <input type="text" name="search" id="searchInput" value="{{ request('search') }}"
+                class="form-control custom-placeholder"
+                placeholder="Cari Nama, Kelas, atau Status...">
+
+            <div class="input-group-append">
+                <span class="input-group-text bg-primary text-white" id="search-icon">
+                    <i class="fas fa-search fa-sm"></i>
+                </span>
+            </div>
         </div>
-    </div>
-</form>
 
+    </form>
 
-    
 
 </div>
+
 
 <!-- Content Row -->
 <div class="card shadow mb-4">
@@ -106,6 +119,20 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    let timer = null;
+    const searchInput = document.getElementById('searchInput');
+    const form = document.getElementById('filterForm');
+
+    searchInput.addEventListener('keyup', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            form.submit();
+        }, 400); // 400ms setelah berhenti mengetik
+    });
+</script>
 
 
 

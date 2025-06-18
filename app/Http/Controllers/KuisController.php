@@ -53,6 +53,34 @@ public function index(Request $request)
     return view('kuis.index', compact('data', 'kuis'));
 }
 
+public function destroy($kuis, $id)
+{
+    switch ($kuis) {
+        case 'kuis1':
+            $model = \App\Models\Kuis1::class;
+            $idColumn = 'id_kuis1';
+            break;
+        case 'kuis2':
+            $model = \App\Models\Kuis2::class;
+            $idColumn = 'id_kuis2';
+            break;
+        case 'kuis3':
+            $model = \App\Models\Kuis3::class;
+            $idColumn = 'id_kuis3';
+            break;
+        default:
+            abort(404);
+    }
+
+    $data = $model::where($idColumn, $id)->firstOrFail();
+    $data->delete();
+
+    return redirect()->back()->with('success', 'Data berhasil dihapus.');
+}
+
+
+
+
 public function downloadPDF(Request $request)
 {
     $kuis = $request->get('kuis', 'kuis1');

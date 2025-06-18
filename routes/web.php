@@ -43,7 +43,8 @@ Route::get('/datasiswa', [DataSiswaController::class, 'index'])->name('datasiswa
 
 Route::get('/kuis', [KuisController::class, 'index'])->name('kuis.index');
 
-Route::delete('/kuis/{id}', [KuisController::class, 'destroy'])->name('kuis.destroy');
+// Route::delete('/kuis/{id}', [KuisController::class, 'destroy'])->name('kuis.destroy');
+Route::delete('/kuis/{kuis}/{id}', [KuisController::class, 'destroy'])->name('kuis.destroy');
 
 Route::get('/evaluasi', [EvaluasiController::class, 'index'])->name('evaluasi.index');
 
