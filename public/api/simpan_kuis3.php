@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$con = new mysqli("localhost", "root", "", "sistemkomputer");
+$con = new mysqli("localhost", "researc4_e-siskom", "g~xSopV0N(K{", "researc4_e-siskom");
 if ($con->connect_error) {
     die("Koneksi gagal: " . $con->connect_error);
 }

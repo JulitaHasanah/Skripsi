@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 // Koneksi ke database
-$con = mysqli_connect("localhost", "root", "", "sistemkomputer");
+$con = mysqli_connect("localhost", "researc4_e-siskom", "g~xSopV0N(K{", "researc4_e-siskom");
 
 // Cek koneksi
 if (mysqli_connect_errno()) {

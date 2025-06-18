@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 // Koneksi ke database
-$con = mysqli_connect("localhost", "root", "", "sistemkomputer");
+$con = mysqli_connect("localhost", "researc4_e-siskom", "g~xSopV0N(K{", "researc4_e-siskom");
 if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
     exit();
