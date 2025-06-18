@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1749728386,
+	"version": 1750235724,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -49,6 +49,8 @@
 		"images/l1_tempathuruf-sheet0.png",
 		"images/particles.png",
 		"images/l1_slot-sheet0.png",
+		"images/l1_slot-sheet1.png",
+		"images/l1_slot-sheet2.png",
 		"images/petunjukkuis-sheet0.png",
 		"images/petunjukkuis-sheet1.png",
 		"images/k1_ruangan-sheet0.png",
@@ -188,6 +190,9 @@
 		"images/waktuhabis-sheet0.png",
 		"images/sebelum-sheet0.png",
 		"images/merangkumsub-sheet0.png",
+		"images/petunjuklatihan-sheet0.png",
+		"images/petunjuklatihan-sheet1.png",
+		"images/btnmulailat-sheet0.png",
 		"media/hackbeat.ogg",
 		"media/sound-whoosh slide swipe.ogg",
 		"media/sound-benar.ogg",
