@@ -66,8 +66,8 @@
                         </div>
                     </div>
                     <div class="box shadow" style="background-color:#FFFD8C;">
-                        {{-- <a href="https://e-siskom.netlify.app/"> --}}
-                        <a href="{{ asset ('SistemKomputer\media.html')}}">
+                        <a href="https://e-siskom.netlify.app/">
+                        {{-- <a href="{{ asset ('SistemKomputer\media.html')}}"> --}}
                             <div class="icon"><i class="fa-solid fa-book" style="font-size: 50px; margin-top: 20%;"></i></div>
                         </a>
                         <div class="content">
