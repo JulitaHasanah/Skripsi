@@ -84,11 +84,9 @@
               <div class="header bg-light p-3">
                 <h5 class="cp">PETA KONSEP</h5>
               </div>
-              <div class="isip">
-                <p> <center>   
-                  <img class="imgpetakonsep" src="landing-page/assets/img/petakonsep.png" alt="..."/>
-                </p></center>
-              </div>
+                <div class="text-center">
+                <img class="imgpetakonsep" src="landing-page/assets/img/petakonsep.png" alt="..."/>
+            </div>
             </div>
           </div>
         </div>
