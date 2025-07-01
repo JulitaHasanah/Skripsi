@@ -104,7 +104,7 @@ p {
 }
 
 .imgpetakonsep {
-    width: 840px;
+    width: 845px;
 }
 
 table {
@@ -132,8 +132,13 @@ table {
         padding: 15px;
     }
 
+    .isip {
+        padding: 2px;
+        font-size: 10px;
+    }
+
     .isi {
-        padding: 30px;
+        padding: 50px;
         font-size: 15px;
     }
 

@@ -56,7 +56,7 @@
         <div class="tab-content" id="nav-tabContent">
           <!-- CAPAIAN PEMBELAJARAN -->
           <div class="tab-pane fade show active" id="list-cp" role="tabpanel" aria-labelledby="list-cp-list">
-            <div class="box-info">
+            <div class="box">
               <div class="header bg-light p-3">
                 <h5 class="cp">CAPAIAN PEMBELAJARAN</h5>
               </div>
@@ -84,7 +84,7 @@
               <div class="header bg-light p-3">
                 <h5 class="cp">PETA KONSEP</h5>
               </div>
-              <div class="isi p-0">
+              <div class="isip">
                 <p> <center>   
                   <img class="imgpetakonsep" src="landing-page/assets/img/petakonsep.png" alt="..."/>
                 </p>  </center>
