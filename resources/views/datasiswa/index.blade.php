@@ -3,6 +3,16 @@
         font-size: 14px;
         color: #6c757d; /* opsional: warna placeholder */
     }
+
+    .progress-cell {
+    width: 250px;
+    max-width: 35vw;
+    }
+
+    .progress-cell .progress {
+        width: 100%;
+    }
+
 </style>
 
 @extends("layouts.app")
@@ -74,11 +84,12 @@
 
                     {{-- @foreach ($data as $index => $item) --}}
                     <tr>
-                    <td>{{ $index + 1 }}</td>
+                    {{-- <td>{{ $index + 1 }}</td> --}}
+                    <td>{{ $index + $data->firstItem() }}</td>
                     <td>{{ $item->nama }}</td>
                     <td>{{ $item->kelas }}</td>
 
-                    <td>
+                    <td class="progress-cell">
                         <div class="progress" style="height: 25px;">
                             <div class="progress-bar bg-success" role="progressbar" style="width: {{ $persen }}%;" aria-valuenow="{{ $persen }}" aria-valuemin="0" aria-valuemax="100">
                                 {{ round($persen) }}%

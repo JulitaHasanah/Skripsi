@@ -82,7 +82,7 @@
                 <tbody>
                     @foreach ($data as $index => $item)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $index + $data->firstItem() }}</td>
                         <td>{{ $item->siswa->nama ?? '-' }}</td> {{-- asumsi nama siswa --}}
                         <td>{{ $item->siswa->kelas ?? '-' }}</td> {{-- asumsi kolom kelas --}}
                         <td>{{ $item->nilai }}</td>
