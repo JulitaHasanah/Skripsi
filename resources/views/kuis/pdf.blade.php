@@ -19,7 +19,8 @@
     @endphp
 
     <h2>Laporan Nilai {{ $kuisFormatted }}{{ $kelas ? ' - Kelas ' . $kelas : '' }}</h2>
-    <p>Dicetak pada: {{ date('d-m-Y H:i') }}</p>
+    {{-- <p>Dicetak pada: {{ date('d-m-Y H:i') }}</p> --}}
+    <p>Dicetak pada: {{ now()->format('d-m-Y H:i') }}</p>
 
     <table>
         <thead>
