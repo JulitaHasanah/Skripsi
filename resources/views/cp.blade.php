@@ -87,7 +87,7 @@
               <div class="isip">
                 <p> <center>   
                   <img class="imgpetakonsep" src="landing-page/assets/img/petakonsep.png" alt="..."/>
-                </p>  </center>
+                </p></center>
               </div>
             </div>
           </div>
