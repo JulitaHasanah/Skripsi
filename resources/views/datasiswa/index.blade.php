@@ -55,7 +55,7 @@
                         <th>No.</th>
                         <th>Nama</th>
                         <th>Kelas</th>
-                        <th>Progres Kuis - Evaluasi</th>   
+                        <th>Progres Penyelesaian Kuis - Evaluasi</th>   
                          <th>Status</th>                   
                     </tr>
                 </thead>
