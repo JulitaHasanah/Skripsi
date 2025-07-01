@@ -80,7 +80,7 @@
 
           <!-- PETA KONSEP -->
           <div class="tab-pane fade" id="list-peta" role="tabpanel" aria-labelledby="list-peta-list">
-            <div class="box">
+            <div class="box-info">
               <div class="header bg-light p-3">
                 <h5 class="cp">PETA KONSEP</h5>
               </div>
