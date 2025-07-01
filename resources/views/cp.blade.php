@@ -56,7 +56,7 @@
         <div class="tab-content" id="nav-tabContent">
           <!-- CAPAIAN PEMBELAJARAN -->
           <div class="tab-pane fade show active" id="list-cp" role="tabpanel" aria-labelledby="list-cp-list">
-            <div class="box">
+            <div class="box-info">
               <div class="header bg-light p-3">
                 <h5 class="cp">CAPAIAN PEMBELAJARAN</h5>
               </div>
