@@ -62,7 +62,7 @@
                     Media Pembelajaran ini dibuat untuk memenuhi persyaratan dalam menyelesaikan 
                     Program Strata-1 Pendidikan Komputer dengan judul tugas akhir : <br>
                     <b>"Pengembangan Media Pembelajaran Interaktif Berbasis Game Edukasi Materi 
-                        Sistem Komputer Untuk Siswa Kelas VIII SMP"</b>
+                        Sistem Komputer Untuk Kelas VIII SMP Menggunakan Construct 2"</b>
                     <br><hr>
                 </center>
 
